@@ -1,7 +1,6 @@
-
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import JsonViewer from '@/components/JsonViewer';
+import JsonViewer from '../components/JsonViewer';
 import { useUpload } from '@/context/UploadContext';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
@@ -10,7 +9,7 @@ import { toast } from 'sonner';
 const Results = () => {
   const { jsonReport, videoDownloadUrl } = useUpload();
   const navigate = useNavigate();
-  
+
   useEffect(() => {
     // Redirect to upload page if there's no data
     if (!jsonReport || !videoDownloadUrl) {
@@ -20,7 +19,7 @@ const Results = () => {
   }, [jsonReport, videoDownloadUrl, navigate]);
 
   if (!jsonReport) {
-    return null; // This will prevent any flash of content before redirect
+    return null; // Prevents flash of content before redirect
   }
 
   const downloadUrl = `${import.meta.env.VITE_PYTHON_BACKEND_URL}${videoDownloadUrl}`;
@@ -37,7 +36,7 @@ const Results = () => {
           </p>
         </div>
       </header>
-      
+
       <main className="flex-grow container mx-auto px-4 py-8">
         <div className="max-w-4xl mx-auto space-y-8">
           <Card className="p-6 shadow-lg">
@@ -61,14 +60,30 @@ const Results = () => {
               </a>
             </div>
           </Card>
-          
-          <Card className="p-6 shadow-lg">
-            <h2 className="text-2xl font-bold mb-4 text-blue-800">Analysis Report</h2>
-            <div className="bg-gray-50 rounded-lg p-4">
+
+          {/* Updated Analysis Report Section */}
+          <Card className="p-6 shadow-lg bg-gradient-to-br from-white to-blue-50 border border-blue-100">
+            <div className="flex items-center mb-4">
+              <svg
+                className="w-6 h-6 text-blue-700 mr-2"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" d="M9 17v-2a2 2 0 012-2h2a2 2 0 012 2v2m4 0v2a2 2 0 01-2 2H7a2 2 0 01-2-2v-2m0 0V5a2 2 0 012-2h10a2 2 0 012 2v12" />
+              </svg>
+              <h2 className="text-2xl font-bold text-blue-800">Analysis Report</h2>
+            </div>
+            <p className="text-blue-600 mb-4">
+              Below is a detailed report of the detected events and analysis. You can scroll through and inspect the structured data.
+            </p>
+            <div className="bg-white border border-gray-200 rounded-lg p-4 max-h-[500px] overflow-auto shadow-inner">
               <JsonViewer data={jsonReport} />
             </div>
           </Card>
-          
+
           <div className="flex justify-center mt-8">
             <Button 
               onClick={() => navigate('/')}
@@ -80,7 +95,7 @@ const Results = () => {
           </div>
         </div>
       </main>
-      
+
       <footer className="w-full py-6 bg-blue-900 text-white mt-8">
         <div className="container mx-auto px-4 text-center">
           <p>© {new Date().getFullYear()} Parking Spot Detector | AI-powered video analysis</p>
