@@ -1,14 +1,21 @@
 
 import React from 'react';
+import { CarFront } from 'lucide-react';
 
-const LoadingSpinner = ({ message = "Processing your video..." }) => {
+const LoadingSpinner = ({ message = "Finding your parking spot..." }) => {
   return (
-    <div className="fixed inset-0 flex flex-col items-center justify-center bg-black bg-opacity-70 z-50">
-      <div className="relative">
-        <div className="w-20 h-20 border-4 border-blue-200 rounded-full animate-spin-slow"></div>
-        <div className="w-20 h-20 border-t-4 border-blue-500 rounded-full absolute top-0 left-0 animate-spin"></div>
+    <div className="fixed inset-0 flex flex-col items-center justify-center bg-gradient-to-br from-blue-900 to-blue-700 z-50">
+      <div className="relative mb-8">
+        <div className="w-20 h-1 bg-gray-300 rounded-full mt-16"></div>
+        
+        {/* The moving car */}
+        <div className="absolute animate-car-drive">
+          <CarFront size={40} className="text-blue-300" />
+        </div>
       </div>
-      <div className="mt-6 bg-white px-6 py-3 rounded-lg animate-pulse-scale">
+      
+      <h1 className="text-3xl font-bold text-white mb-2">FindMySpot</h1>
+      <div className="mt-4 bg-white px-8 py-4 rounded-lg">
         <p className="text-lg font-medium text-gray-800">{message}</p>
       </div>
     </div>

@@ -101,6 +101,10 @@ export default {
 				'spin-slow': {
 					'0%': { transform: 'rotate(0deg)' },
 					'100%': { transform: 'rotate(360deg)' }
+				},
+				'car-drive': {
+					'0%': { transform: 'translateX(-50px)' },
+					'100%': { transform: 'translateX(100px)' }
 				}
 			},
 			animation: {
@@ -108,7 +112,8 @@ export default {
 				'accordion-up': 'accordion-up 0.2s ease-out',
 				'pulse-scale': 'pulse-scale 2s infinite',
 				'fade-in': 'fade-in 0.5s ease-out',
-				'spin-slow': 'spin-slow 3s linear infinite'
+				'spin-slow': 'spin-slow 3s linear infinite',
+				'car-drive': 'car-drive 1.5s ease-in-out infinite alternate'
 			}
 		}
 	},
